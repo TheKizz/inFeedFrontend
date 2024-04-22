@@ -26,7 +26,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
   },
-  "include": ["src", ".eslintrc.cjs", "*.config.*"],
+  "include": ["src", ".eslintrc.cjs", "*.config.*", ".prettierrc", ".lintstagedrc"],
   "exclude": ["src/components/ui"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
