@@ -48,13 +48,28 @@ const UserOptionsDropdownMenu = () => {
     });
   };
 
+  const getUserAcronym = () => {
+    if (!user) return;
+    const splicedUsername: string[] = user?.username?.split(/[_-\s]/);
+    if (splicedUsername?.length > 1) {
+      return splicedUsername[0]
+        ?.charAt(0)
+        ?.concat(splicedUsername[1]?.charAt(0))
+        ?.toUpperCase();
+    }
+    return splicedUsername[0]?.charAt(0)?.toUpperCase();
+  };
+
   const renderUserAuthOptions = () => {
     return (
       <>
         <DropdownMenuTrigger asChild>
-          <Avatar className="cursor-pointer">
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
+          <Avatar className="cursor-pointer border bg-black">
+            <span className="flex h-full w-full items-center justify-center">
+              <Typography type="body" variant="small" className="text-white">
+                {getUserAcronym()}
+              </Typography>
+            </span>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
@@ -69,7 +84,7 @@ const UserOptionsDropdownMenu = () => {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Link to={'/profile/trivias'}>Trivias</Link>
+              <Link to={'/profile/surveys'}>Trivias</Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
@@ -103,7 +118,7 @@ export const Header = ({ className }: { className?: string }) => {
     >
       <NavigationMenuList>
         <NavLink to="/">
-          <Typography type="title" variant="h1" className='hover:animate-pulse'>
+          <Typography type="title" variant="h1" className="hover:animate-pulse">
             inFeed
           </Typography>
         </NavLink>

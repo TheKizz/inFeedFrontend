@@ -46,7 +46,7 @@ const AuthStateContext = createContext<
 function authReducer(state: IState, action: IAction) {
   switch (action.type) {
     case 'loginOrRegister': {
-      return { ...state, ...action.payload};
+      return { ...state, ...action.payload };
     }
     case 'logout': {
       return { ...state, user: undefined, token: undefined };
@@ -56,14 +56,19 @@ function authReducer(state: IState, action: IAction) {
     }
   }
 }
-
 export function AuthProvider({ children }: Readonly<IProviderProps>) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const localStorageUser: string | undefined =
+    LocalStorageService.get(USER_KEY);
+  const localStorageToken: string | undefined = LocalStorageService.get(
+    USER_ACCESS_TOKEN_KEY,
+  );
   const [state, dispatch]: [IState, Dispatch] = useReducer(authReducer, {
-    user:
-      (LocalStorageService.get(USER_KEY) as UserModel) || undefined,
-    token:
-      (LocalStorageService.get(USER_ACCESS_TOKEN_KEY) as string) || undefined,
+    user: localStorageUser
+      ? (JSON.parse(
+          JSON.parse(localStorageUser ?? '{}') as string,
+        ) as UserModel)
+      : undefined,
+    token: localStorageToken,
   });
   const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
   return (
@@ -81,7 +86,8 @@ export function useAuthState(): IUseAuthState {
   const login = async (
     loginUserDto: LoginUserDto,
   ): Promise<IUseAuthMethodReturn> => {
-    const response: IResponse<IAuthResult> | undefined = await AuthService.login(loginUserDto);
+    const response: IResponse<IAuthResult> | undefined =
+      await AuthService.login(loginUserDto);
     if (!response?.success || response.statusCode >= 400)
       return {
         success: false,
@@ -101,7 +107,8 @@ export function useAuthState(): IUseAuthState {
   const register = async (
     registerCredentials: RegisterUserDto,
   ): Promise<IUseAuthMethodReturn> => {
-    const response: IResponse<IAuthResult> | undefined = await AuthService.register(registerCredentials);
+    const response: IResponse<IAuthResult> | undefined =
+      await AuthService.register(registerCredentials);
     if (!response?.success || response.statusCode >= 400)
       return {
         success: false,
@@ -119,7 +126,8 @@ export function useAuthState(): IUseAuthState {
   };
 
   const logout = async (userEmail: string): Promise<IUseAuthMethodReturn> => {
-    const response: IResponse<IAuthResult> | undefined = await AuthService.logout(userEmail);
+    const response: IResponse<IAuthResult> | undefined =
+      await AuthService.logout(userEmail);
     if (!response?.success || response.statusCode >= 400)
       return {
         success: false,

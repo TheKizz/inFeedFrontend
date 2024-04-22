@@ -1,8 +1,7 @@
 export class LocalStorageService {
-  static get(key: string): unknown {
+  static get(key: string): string | undefined {
     const data: string | null = localStorage.getItem(key);
-    if (!data) return undefined;
-    return JSON.parse(data);
+    return data ?? undefined;
   }
 
   static set(key: string, value: unknown) {
