@@ -1,34 +1,34 @@
-import { QueryDto } from '@/api/common/dto/query.dto';
-import { IPaginatedResult } from '@/api/common/interfaces/paginated-result.interface';
-import { ISurveyEntity } from '../entities/survey.entity';
-import { IResponse } from '@/api/common/interfaces/response.interface';
-import { buildQueryParams } from '@/api/common/utils/utils';
-import { USER_ACCESS_TOKEN_KEY } from '@/contexts/auth.context';
-import { CreateSurveyDto } from '../dto/create-survey.dto';
-import { UpdateSurveyDto } from '../dto/update-survey.dto';
-import { CreateQuestionDto } from '../dto/create-question.dto';
-import { UpdateQuestionDto } from '../dto/update-question.dto';
-import { IQuestionEntity } from '../entities/question.model';
-import { IAnswerOptionEntity } from '../entities/answer-option.model';
-import { CreateAnswerOptionDto } from '../dto/create-answer-option.dto';
-import { UpdateAnswerOptionDto } from '../dto/update-answer.dto';
+import { QueryDto } from "@/api/common/dto/query.dto";
+import { IPaginatedResult } from "@/api/common/interfaces/paginated-result.interface";
+import { ISurveyEntity } from "../entities/survey.entity";
+import { IResponse } from "@/api/common/interfaces/response.interface";
+import { buildQueryParams } from "@/api/common/utils/utils";
+import { USER_ACCESS_TOKEN_KEY } from "@/contexts/auth.context";
+import { CreateSurveyDto } from "../dto/create-survey.dto";
+import { UpdateSurveyDto } from "../dto/update-survey.dto";
+import { CreateQuestionDto } from "../dto/create-question.dto";
+import { UpdateQuestionDto } from "../dto/update-question.dto";
+import { IQuestionEntity } from "../entities/question.model";
+import { IAnswerOptionEntity } from "../entities/answer-option.model";
+import { CreateAnswerOptionDto } from "../dto/create-answer-option.dto";
+import { UpdateAnswerOptionDto } from "../dto/update-answer.dto";
 
 export class SurveyService {
   private static readonly baseUrl = `${import.meta.env.VITE_APP_API_URL}/surveys`;
 
   // Survey
   static async searchSurveys(
-    queryDto: QueryDto<string>,
+    queryDto: QueryDto<string>
   ): Promise<IResponse<IPaginatedResult<string, ISurveyEntity>> | undefined> {
     try {
       const response = await fetch(
         `${this.baseUrl}?${buildQueryParams(queryDto)}`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
-          },
-        },
+            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
+          }
+        }
       );
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -42,14 +42,14 @@ export class SurveyService {
   }
 
   static async findSurveyById(
-    surveyId: string,
+    surveyId: string
   ): Promise<IResponse<ISurveyEntity> | undefined> {
     try {
       const response = await fetch(`${this.baseUrl}/${surveyId}`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
-        },
+          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
+        }
       });
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -61,15 +61,15 @@ export class SurveyService {
   }
 
   static async createSurvey(
-    createSurveyDto: CreateSurveyDto,
+    createSurveyDto: CreateSurveyDto
   ): Promise<IResponse<ISurveyEntity> | undefined> {
     try {
       const response = await fetch(`${this.baseUrl}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
+          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
         },
-        body: JSON.stringify(createSurveyDto),
+        body: JSON.stringify(createSurveyDto)
       });
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -82,15 +82,15 @@ export class SurveyService {
 
   static async updateSurveyById(
     surveyId: string,
-    updateSurveyDto: UpdateSurveyDto,
+    updateSurveyDto: UpdateSurveyDto
   ): Promise<IResponse<ISurveyEntity> | undefined> {
     try {
       const response = await fetch(`${this.baseUrl}/${surveyId}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
+          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
         },
-        body: JSON.stringify(updateSurveyDto),
+        body: JSON.stringify(updateSurveyDto)
       });
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -102,14 +102,14 @@ export class SurveyService {
   }
 
   static async deleteSurveyById(
-    surveyId: string,
+    surveyId: string
   ): Promise<IResponse<ISurveyEntity> | undefined> {
     try {
       const response = await fetch(`${this.baseUrl}/${surveyId}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
-        },
+          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
+        }
       });
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -123,15 +123,15 @@ export class SurveyService {
   // Question
   static async createQuestion(
     surveyId: string,
-    createQuestionDto: CreateQuestionDto,
+    createQuestionDto: CreateQuestionDto
   ): Promise<IResponse<IQuestionEntity> | undefined> {
     try {
       const response = await fetch(`${this.baseUrl}/${surveyId}/questions`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
+          Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
         },
-        body: JSON.stringify(createQuestionDto),
+        body: JSON.stringify(createQuestionDto)
       });
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -145,18 +145,18 @@ export class SurveyService {
   static async updateQuestionById(
     surveyId: string,
     questionId: string,
-    updateQuestionDto: UpdateQuestionDto,
+    updateQuestionDto: UpdateQuestionDto
   ): Promise<IResponse<IQuestionEntity> | undefined> {
     try {
       const response = await fetch(
         `${this.baseUrl}/${surveyId}/questions/${questionId}`,
         {
-          method: 'PATCH',
+          method: "PATCH",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
+            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
           },
-          body: JSON.stringify(updateQuestionDto),
-        },
+          body: JSON.stringify(updateQuestionDto)
+        }
       );
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -169,17 +169,17 @@ export class SurveyService {
 
   static async deleteQuestionById(
     surveyId: string,
-    questionId: string,
+    questionId: string
   ): Promise<IResponse<IQuestionEntity> | undefined> {
     try {
       const response = await fetch(
         `${this.baseUrl}/${surveyId}/questions/${questionId}`,
         {
-          method: 'DELETE',
+          method: "DELETE",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
-          },
-        },
+            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
+          }
+        }
       );
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -194,18 +194,18 @@ export class SurveyService {
   static async createAnswerOption(
     surveyId: string,
     questionId: string,
-    createAnswerOptionDto: CreateAnswerOptionDto,
+    createAnswerOptionDto: CreateAnswerOptionDto
   ): Promise<IResponse<IAnswerOptionEntity> | undefined> {
     try {
       const response = await fetch(
         `${this.baseUrl}/${surveyId}/questions/${questionId}/answer-options`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
+            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
           },
-          body: JSON.stringify(createAnswerOptionDto),
-        },
+          body: JSON.stringify(createAnswerOptionDto)
+        }
       );
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -220,18 +220,18 @@ export class SurveyService {
     surveyId: string,
     questionId: string,
     answerOptionId: string,
-    updateAnswerOptionDto: UpdateAnswerOptionDto,
+    updateAnswerOptionDto: UpdateAnswerOptionDto
   ): Promise<IResponse<IAnswerOptionEntity> | undefined> {
     try {
       const response = await fetch(
         `${this.baseUrl}/${surveyId}/questions/${questionId}/answer-options/${answerOptionId}`,
         {
-          method: 'PATCH',
+          method: "PATCH",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
+            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
           },
-          body: JSON.stringify(updateAnswerOptionDto),
-        },
+          body: JSON.stringify(updateAnswerOptionDto)
+        }
       );
       if (response.status >= 500) {
         throw new Error(response.statusText);
@@ -245,17 +245,17 @@ export class SurveyService {
   static async deleteAnswerOptionById(
     surveyId: string,
     questionId: string,
-    answerOptionId: string,
+    answerOptionId: string
   ): Promise<IResponse<IAnswerOptionEntity> | undefined> {
     try {
       const response = await fetch(
         `${this.baseUrl}/${surveyId}/questions/${questionId}/answer-options/${answerOptionId}`,
         {
-          method: 'DELETE',
+          method: "DELETE",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`,
-          },
-        },
+            Authorization: `Bearer ${localStorage.getItem(USER_ACCESS_TOKEN_KEY)}`
+          }
+        }
       );
       if (response.status >= 500) {
         throw new Error(response.statusText);

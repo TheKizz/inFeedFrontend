@@ -11,7 +11,7 @@ export class LocalStorageService {
 
   static setMany(toSave: Record<string, string>) {
     Object.entries(toSave).forEach(([key, value]) =>
-      LocalStorageService.set(key, value),
+      LocalStorageService.set(key, value)
     );
   }
 

@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
-import { Header } from './Header';
-import { ResponsiveNotReady } from './ResponsiveNotReady';
-import { Background } from './Background';
+import { Outlet } from "react-router-dom";
+import { Header } from "./Header";
+import { ResponsiveNotReady } from "./ResponsiveNotReady";
+import { Background } from "./Background";
 
 export const Layout = () => {
   return (

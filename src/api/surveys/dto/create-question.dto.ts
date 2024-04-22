@@ -1,5 +1,5 @@
-import { QuestionType } from '../enums/question-type.enum';
-import { CreateAnswerOptionDto } from './create-answer-option.dto';
+import { QuestionType } from "../enums/question-type.enum";
+import { CreateAnswerOptionDto } from "./create-answer-option.dto";
 
 export class CreateQuestionDto {
   surveyId: string;
@@ -11,7 +11,7 @@ export class CreateQuestionDto {
     surveyId,
     description,
     type,
-    answerOptions,
+    answerOptions
   }: {
     surveyId: string;
     description: string;

@@ -1,5 +1,5 @@
-import { SurveyParticipationCondition } from '../enums/survey-participation-condition.enum';
-import { CreateQuestionDto } from './create-question.dto';
+import { SurveyParticipationCondition } from "../enums/survey-participation-condition.enum";
+import { CreateQuestionDto } from "./create-question.dto";
 
 export class CreateSurveyDto {
   title: string;
@@ -19,7 +19,7 @@ export class CreateSurveyDto {
     forceToRate,
     startsAt,
     endsAt,
-    questions,
+    questions
   }: {
     title: string;
     description: string;

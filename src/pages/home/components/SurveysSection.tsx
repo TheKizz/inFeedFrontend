@@ -1,9 +1,9 @@
-import { Typography } from '@/components/custom/Typography';
-import { SurveyCollection } from '@/pages/surveys/components/SurveyCollection';
-import { Book } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { SectionTitle } from '@/components/custom/SectionTitle';
-import { Heart } from 'lucide-react';
+import { Typography } from "@/components/custom/Typography";
+import { SurveyCollection } from "@/pages/surveys/components/SurveyCollection";
+import { Book } from "lucide-react";
+import { Link } from "react-router-dom";
+import { SectionTitle } from "@/components/custom/SectionTitle";
+import { Heart } from "lucide-react";
 
 interface Props {
   className?: string;
@@ -25,7 +25,7 @@ export const SurveysSection = (props?: Props) => {
           <Book className="size-9" />
           <span>
             <Typography type="title" variant="h2">
-              Encuestas{' '}
+              Encuestas{" "}
             </Typography>
             <Typography type="body" variant="muted">
               Las encuestas más recientes,

@@ -1,6 +1,6 @@
-import { AppRoutes } from './AppRoutes';
-import { AuthProvider } from './contexts/auth.context';
-import { Toaster } from '@/components/ui/sonner';
+import { AppRoutes } from "./AppRoutes";
+import { AuthProvider } from "./contexts/auth.context";
+import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
-      <Toaster closeButton/>
+      <Toaster closeButton />
     </>
   );
 }

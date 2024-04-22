@@ -1,39 +1,39 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
-} from '@/components/ui/card';
+  CardContent
+} from "@/components/ui/card";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { RegisterUserSchema } from '../schemas/register-user.schema';
-import { useAuthState } from '@/contexts/auth.context';
-import { toast } from 'sonner';
-import { RegisterUserDto } from '@/api/user-access/dto/register-user.dto';
-import { renderResponseToast } from '@/lib/utils';
+  FormMessage
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { RegisterUserSchema } from "../schemas/register-user.schema";
+import { useAuthState } from "@/contexts/auth.context";
+import { toast } from "sonner";
+import { RegisterUserDto } from "@/api/user-access/dto/register-user.dto";
+import { renderResponseToast } from "@/lib/utils";
 
 export const Register = () => {
   const form = useForm<z.infer<typeof RegisterUserSchema>>({
     resolver: zodResolver(RegisterUserSchema),
     defaultValues: {
-      username: '',
-      email: '',
-      password: '',
-      passwordConfirmation: '',
+      username: "",
+      email: "",
+      password: "",
+      passwordConfirmation: ""
     },
-    mode: 'onSubmit',
+    mode: "onSubmit"
   });
   const { register } = useAuthState();
 
@@ -41,9 +41,9 @@ export const Register = () => {
     let successfulValidation = true;
     const { password, passwordConfirmation } = form.getValues();
     if (password !== passwordConfirmation) {
-      form.setError('passwordConfirmation', {
-        type: 'validate',
-        message: 'Las contraseñas no coinciden',
+      form.setError("passwordConfirmation", {
+        type: "validate",
+        message: "Las contraseñas no coinciden"
       });
       successfulValidation = false;
     }
@@ -52,7 +52,7 @@ export const Register = () => {
 
   const onSubmit = async () => {
     if (!validateRegistrationRules()) return;
-    toast.loading('Registrando cuenta...');
+    toast.loading("Registrando cuenta...");
     const response = await register(new RegisterUserDto(form.getValues()));
     renderResponseToast(response);
   };
@@ -77,11 +77,7 @@ export const Register = () => {
                     Nombre de usuario
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Usuario123"
-                      {...field}
-                    />
+                    <Input type="text" placeholder="Usuario123" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

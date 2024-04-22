@@ -1,4 +1,4 @@
-import { IQuery } from '../interfaces/query.interface';
+import { IQuery } from "../interfaces/query.interface";
 
 export class QueryDto<IdType = string> implements IQuery<IdType> {
   search?: string;

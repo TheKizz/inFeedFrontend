@@ -1,8 +1,8 @@
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuList,
-} from '@/components/ui/navigation-menu';
+  NavigationMenuList
+} from "@/components/ui/navigation-menu";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,22 +10,22 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { Link, NavLink, NavigateFunction, useNavigate } from 'react-router-dom';
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Link, NavLink, NavigateFunction, useNavigate } from "react-router-dom";
 import {
   IUseAuthMethodReturn,
   IUseAuthState,
-  useAuthState,
-} from '@/contexts/auth.context';
-import { UserModel } from '@/api/user-access/entities/user.entity';
-import { renderResponseToast } from '@/lib/utils';
-import { toast } from 'sonner';
-import { Typography } from './Typography';
-import { Book, Home, TrendingUp } from 'lucide-react';
-import { ReactNode } from 'react';
+  useAuthState
+} from "@/contexts/auth.context";
+import { UserModel } from "@/api/user-access/entities/user.entity";
+import { renderResponseToast } from "@/lib/utils";
+import { toast } from "sonner";
+import { Typography } from "./Typography";
+import { Book, Home, TrendingUp } from "lucide-react";
+import { ReactNode } from "react";
 
 const UserOptionsDropdownMenu = () => {
   const { state, logout }: IUseAuthState = useAuthState();
@@ -33,18 +33,18 @@ const UserOptionsDropdownMenu = () => {
   const navigate: NavigateFunction = useNavigate();
 
   const handleLogin = () => {
-    navigate('/auth');
+    navigate("/auth");
   };
 
   const handleLogout = async () => {
     if (!user) return;
     console.log({ user });
-    toast.loading('Cerrando sesión...');
+    toast.loading("Cerrando sesión...");
     const response: IUseAuthMethodReturn = await logout(user?.email);
     renderResponseToast(response, {
       onFinish: () => {
-        navigate('/auth');
-      },
+        navigate("/auth");
+      }
     });
   };
 
@@ -77,14 +77,14 @@ const UserOptionsDropdownMenu = () => {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Link to={'/profile'}>Perfil</Link>
+              <Link to={"/profile"}>Perfil</Link>
             </DropdownMenuItem>
             <DropdownMenuItem disabled>Ajustes</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Link to={'/profile/surveys'}>Trivias</Link>
+              <Link to={"/profile/surveys"}>Trivias</Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
@@ -99,7 +99,7 @@ const UserOptionsDropdownMenu = () => {
   };
   const renderUnAuthOptions = () => {
     return (
-      <Button variant={'ghost'} onClick={handleLogin}>
+      <Button variant={"ghost"} onClick={handleLogin}>
         Iniciar sesión
       </Button>
     );
@@ -164,7 +164,7 @@ const HeaderNavLink = (props: HeaderNavLinkProps) => {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => (isActive ? 'font-bold' : '')}
+      className={({ isActive }) => (isActive ? "font-bold" : "")}
     >
       <span className="flex gap-2 hover:animate-pulse">
         {icon}

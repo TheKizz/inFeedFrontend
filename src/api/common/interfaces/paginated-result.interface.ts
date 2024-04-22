@@ -1,4 +1,4 @@
-import { IQuery } from './query.interface';
+import { IQuery } from "./query.interface";
 
 export interface IPaginatedResult<IdType, Entity> {
   query: IQuery<IdType>;

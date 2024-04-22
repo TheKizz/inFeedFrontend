@@ -4,7 +4,7 @@ export class CreateAnswerOptionDto {
 
   constructor({
     questionId,
-    description,
+    description
   }: {
     questionId: string;
     description: string;

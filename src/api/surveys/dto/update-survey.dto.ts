@@ -1,4 +1,4 @@
-import { SurveyParticipationCondition } from '../enums/survey-participation-condition.enum';
+import { SurveyParticipationCondition } from "../enums/survey-participation-condition.enum";
 
 export class UpdateSurveyDto {
   title?: string;
@@ -16,7 +16,7 @@ export class UpdateSurveyDto {
     participationCondition,
     forceToRate,
     startsAt,
-    endsAt,
+    endsAt
   }: {
     title?: string;
     description?: string;

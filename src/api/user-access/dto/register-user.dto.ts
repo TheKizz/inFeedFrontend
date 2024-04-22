@@ -6,7 +6,7 @@ export class RegisterUserDto {
   constructor({
     username,
     email,
-    password,
+    password
   }: {
     username: string;
     email: string;

@@ -1,13 +1,13 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Login } from './components/Login';
-import { Register } from './components/Register';
-import { Navigate } from 'react-router-dom';
-import { useAuthState } from '@/contexts/auth.context';
-import { Background } from '@/components/custom/Background';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Login } from "./components/Login";
+import { Register } from "./components/Register";
+import { Navigate } from "react-router-dom";
+import { useAuthState } from "@/contexts/auth.context";
+import { Background } from "@/components/custom/Background";
 
 export const AuthPage = () => {
   const {
-    state: { user },
+    state: { user }
   } = useAuthState();
 
   return (

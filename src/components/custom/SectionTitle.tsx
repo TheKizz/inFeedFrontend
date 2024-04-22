@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { Typography } from './Typography';
+import { ReactNode } from "react";
+import { Typography } from "./Typography";
 
 interface Props {
   icon?: ReactNode;
@@ -12,7 +12,9 @@ interface Props {
 export const SectionTitle = (props: Props) => {
   const { icon, preTitle, title, className, children } = props;
   return (
-    <div className={`${className} h-60 flex items-center gap-4 hover:animate-bouncing`}>
+    <div
+      className={`${className} h-60 flex items-center gap-4 hover:animate-bouncing`}
+    >
       {icon}
       <span>
         <Typography type="title" variant="h2">

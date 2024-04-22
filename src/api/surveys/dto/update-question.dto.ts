@@ -1,4 +1,4 @@
-import { QuestionType } from '../enums/question-type.enum';
+import { QuestionType } from "../enums/question-type.enum";
 
 export class UpdateQuestionDto {
   description?: string;
@@ -6,7 +6,7 @@ export class UpdateQuestionDto {
 
   constructor({
     description,
-    type,
+    type
   }: {
     description?: string;
     type?: QuestionType;

@@ -1,41 +1,41 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
-} from '@/components/ui/card';
+  CardContent
+} from "@/components/ui/card";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { LoginSchema } from '../schemas/login.schema';
-import { IUseAuthMethodReturn, useAuthState } from '@/contexts/auth.context';
-import { renderResponseToast } from '@/lib/utils';
-import { toast } from 'sonner';
+  FormMessage
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { LoginSchema } from "../schemas/login.schema";
+import { IUseAuthMethodReturn, useAuthState } from "@/contexts/auth.context";
+import { renderResponseToast } from "@/lib/utils";
+import { toast } from "sonner";
 
 export const Login = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: ""
     },
-    mode: 'onSubmit',
+    mode: "onSubmit"
   });
   const { login } = useAuthState();
 
   const handleSubmit = async () => {
-    toast.loading('Iniciando sesión...');
+    toast.loading("Iniciando sesión...");
     const response: IUseAuthMethodReturn = await login(form.getValues());
     renderResponseToast(response);
   };

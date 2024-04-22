@@ -4,18 +4,18 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+  CardTitle
+} from "@/components/ui/card";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { Skeleton } from '@/components/ui/skeleton';
+  TooltipTrigger
+} from "@/components/ui/tooltip";
+import { Skeleton } from "@/components/ui/skeleton";
 
-import { ISurveyEntity } from '@/api/surveys/entities/survey.entity';
-import { Button } from '@/components/ui/button';
+import { ISurveyEntity } from "@/api/surveys/entities/survey.entity";
+import { Button } from "@/components/ui/button";
 import {
   Axe,
   Earth,
@@ -26,12 +26,12 @@ import {
   Slash,
   Star,
   Sunrise,
-  Sunset,
-} from 'lucide-react';
-import { Typography } from '@/components/custom/Typography';
-import { useEffect, useState } from 'react';
+  Sunset
+} from "lucide-react";
+import { Typography } from "@/components/custom/Typography";
+import { useEffect, useState } from "react";
 
-type SurveyTimeStatus = 'Activo' | 'Expirado' | 'Inactivo';
+type SurveyTimeStatus = "Activo" | "Expirado" | "Inactivo";
 interface ISurveyStatus {
   state: SurveyTimeStatus;
   color: string;
@@ -50,11 +50,11 @@ export const Survey = (props: Props) => {
 
   const determineCurrentState = (): ISurveyStatus => {
     if (survey?.endsAt && survey?.endsAt < new Date()) {
-      return { state: 'Expirado', color: 'bg-red-500' };
+      return { state: "Expirado", color: "bg-red-500" };
     } else if (survey?.startsAt && survey?.startsAt > new Date()) {
-      return { state: 'Inactivo', color: 'bg-blue-500' };
+      return { state: "Inactivo", color: "bg-blue-500" };
     } else {
-      return { state: 'Activo', color: 'bg-green-500' };
+      return { state: "Activo", color: "bg-green-500" };
     }
   };
 
@@ -79,15 +79,13 @@ export const Survey = (props: Props) => {
         </div>
       ) : (
         <div className={`${className}`}>
-          <Card
-            className="max-w-96 border-black shadow-md duration-300 transition-all hover:shadow-xl "
-          >
+          <Card className="max-w-96 border-black shadow-md duration-300 transition-all hover:shadow-xl ">
             <CardHeader className="flex gap-2">
               <div
                 className={`flex gap-2 border border-black bg-white rounded-full p-2 items-center w-28 shadow-md duration-300 transition-shadow hover:shadow-inner`}
               >
                 <span
-                  className={`rounded-full h-3 w-3 ${currentSurveyStatus?.color} ${currentSurveyStatus?.state === 'Activo' ? 'animate-pulse  duration-1000' : ''}`}
+                  className={`rounded-full h-3 w-3 ${currentSurveyStatus?.color} ${currentSurveyStatus?.state === "Activo" ? "animate-pulse  duration-1000" : ""}`}
                 ></span>
                 <Typography type="body" variant="small">
                   {currentSurveyStatus?.state}
@@ -107,7 +105,7 @@ export const Survey = (props: Props) => {
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        size={'icon'}
+                        size={"icon"}
                         className="duration-300 hover:shadow-inner"
                       >
                         <Sunrise className="size-4" />
@@ -123,7 +121,7 @@ export const Survey = (props: Props) => {
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        size={'icon'}
+                        size={"icon"}
                         className="duration-300 hover:shadow-inner"
                       >
                         <MailQuestion className="size-4" />
@@ -139,7 +137,7 @@ export const Survey = (props: Props) => {
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        size={'icon'}
+                        size={"icon"}
                         className="duration-300 hover:shadow-inner"
                       >
                         <Axe className="size-4" />
@@ -147,8 +145,8 @@ export const Survey = (props: Props) => {
                     </TooltipTrigger>
                     <TooltipContent>
                       <Typography type="body" variant="p">
-                        Calificación obligatoria:{' '}
-                        {survey?.forceToRate ? 'Si' : 'No'}
+                        Calificación obligatoria:{" "}
+                        {survey?.forceToRate ? "Si" : "No"}
                       </Typography>
                     </TooltipContent>
                   </Tooltip>
@@ -156,7 +154,7 @@ export const Survey = (props: Props) => {
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        size={'icon'}
+                        size={"icon"}
                         className="duration-300 hover:shadow-inner"
                       >
                         <Star className="size-4" />
@@ -173,7 +171,7 @@ export const Survey = (props: Props) => {
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        size={'icon'}
+                        size={"icon"}
                         className="duration-300 hover:shadow-inner"
                       >
                         <Earth className="size-4" />
@@ -181,8 +179,8 @@ export const Survey = (props: Props) => {
                     </TooltipTrigger>
                     <TooltipContent>
                       <Typography type="body" variant="p">
-                        Abierto para:{' '}
-                        {survey?.isPublic ? 'Todos' : 'Solo invitados'}
+                        Abierto para:{" "}
+                        {survey?.isPublic ? "Todos" : "Solo invitados"}
                       </Typography>
                     </TooltipContent>
                   </Tooltip>
@@ -190,7 +188,7 @@ export const Survey = (props: Props) => {
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
-                        size={'icon'}
+                        size={"icon"}
                         className="duration-300 hover:shadow-inner"
                       >
                         <Sunset className="size-4" />
@@ -198,8 +196,8 @@ export const Survey = (props: Props) => {
                     </TooltipTrigger>
                     <TooltipContent>
                       <Typography type="body" variant="p">
-                        Fecha de cierre:{' '}
-                        {survey?.endsAt ? survey?.endsAt : 'Indefinido'}
+                        Fecha de cierre:{" "}
+                        {survey?.endsAt ? survey?.endsAt : "Indefinido"}
                       </Typography>
                     </TooltipContent>
                   </Tooltip>
@@ -208,17 +206,17 @@ export const Survey = (props: Props) => {
             </CardContent>
             <CardFooter className="flex flex-wrap sm:flex-nowrap gap-2">
               <Button
-                variant={'outline'}
-                size={'lg'}
-                disabled={currentSurveyStatus?.state !== 'Activo'}
+                variant={"outline"}
+                size={"lg"}
+                disabled={currentSurveyStatus?.state !== "Activo"}
                 className="w-full min-w-32 border-black shadow-md duration-300 hover:bg-yellow-100 hover:shadow-inner active:bg-yellow-200"
               >
                 <Play className="mx-1 size-4" fill="yellow" />
                 Participar
               </Button>
               <Button
-                variant={'outline'}
-                size={'lg'}
+                variant={"outline"}
+                size={"lg"}
                 className="min-w-32 border-black w-full shadow-md duration-300 hover:bg-blue-100 hover:shadow-inner active:bg-blue-200"
               >
                 <ReceiptText className="mx-1 size-4" fill="skyblue" />

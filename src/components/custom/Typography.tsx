@@ -1,37 +1,37 @@
-type type = 'title' | 'body';
-type titleVariant = 'h1' | 'h2' | 'h3' | 'h4';
+type type = "title" | "body";
+type titleVariant = "h1" | "h2" | "h3" | "h4";
 type bodyVariant =
-  | 'p'
-  | 'blockquote'
-  | 'inlineCode'
-  | 'lead'
-  | 'large'
-  | 'small'
-  | 'muted';
+  | "p"
+  | "blockquote"
+  | "inlineCode"
+  | "lead"
+  | "large"
+  | "small"
+  | "muted";
 
 interface Props<T extends type> {
   type: T;
-  variant: T extends 'title' ? titleVariant : bodyVariant;
+  variant: T extends "title" ? titleVariant : bodyVariant;
   children?: unknown;
   className?: string;
 }
 
-export const Typography = <T extends type = 'body'>(props: Props<T>) => {
+export const Typography = <T extends type = "body">(props: Props<T>) => {
   const { type, variant, children, className } = props;
   switch (type) {
-    case 'title':
+    case "title":
       return Title(variant as titleVariant, children, className);
-    case 'body':
+    case "body":
       return Body(variant as bodyVariant, children, className);
     default:
-      throw new Error('Invalid type');
+      throw new Error("Invalid type");
   }
 };
 
 const Title = (
   variant: titleVariant,
   children?: unknown,
-  className?: string,
+  className?: string
 ) => {
   const VariantH1 = (children?: unknown) => {
     return (
@@ -71,24 +71,20 @@ const Title = (
   };
 
   switch (variant) {
-    case 'h1':
+    case "h1":
       return VariantH1(children);
-    case 'h2':
+    case "h2":
       return VariantH2(children);
-    case 'h3':
+    case "h3":
       return VariantH3(children);
-    case 'h4':
+    case "h4":
       return VariantH4(children);
     default:
-      throw new Error('Invalid title variant');
+      throw new Error("Invalid title variant");
   }
 };
 
-const Body = (
-  variant: bodyVariant,
-  children?: unknown,
-  className?: string,
-) => {
+const Body = (variant: bodyVariant, children?: unknown, className?: string) => {
   const VariantP = (children?: unknown) => {
     return (
       <p className={`leading-7 [&:not(:first-child)]:mt-6 ${className}`}>
@@ -136,28 +132,28 @@ const Body = (
   };
   const VariantMuted = (children?: unknown) => {
     return (
-      <p className={'text-sm text-muted-foreground ${className}'}>
+      <p className={"text-sm text-muted-foreground ${className}"}>
         <>{children}</>
       </p>
     );
   };
 
   switch (variant) {
-    case 'p':
+    case "p":
       return VariantP(children);
-    case 'blockquote':
+    case "blockquote":
       return VariantBlockquote(children);
-    case 'inlineCode':
+    case "inlineCode":
       return VariantInlineCode(children);
-    case 'lead':
+    case "lead":
       return VariantLead(children);
-    case 'large':
+    case "large":
       return VariantLarge(children);
-    case 'small':
+    case "small":
       return VariantSmall(children);
-    case 'muted':
+    case "muted":
       return VariantMuted(children);
     default:
-      throw new Error('Invalid body variant');
+      throw new Error("Invalid body variant");
   }
 };

@@ -1,8 +1,7 @@
-import { useAuthState } from '@/contexts/auth.context';
-import { Navigate, useLocation } from 'react-router-dom';
-import { Layout } from './Layout';
-import { UserModel } from '@/api/user-access/entities/user.entity';
-
+import { useAuthState } from "@/contexts/auth.context";
+import { Navigate, useLocation } from "react-router-dom";
+import { Layout } from "./Layout";
+import { UserModel } from "@/api/user-access/entities/user.entity";
 
 export const ProtectedRoute = () => {
   const user: UserModel | undefined = useAuthState().state.user;

@@ -1,8 +1,8 @@
-import { Typography } from './Typography';
-import { Separator } from '@/components/ui/separator';
-import { Button } from '../ui/button';
-import { ArrowLeft } from 'lucide-react';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { Typography } from "./Typography";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "../ui/button";
+import { ArrowLeft } from "lucide-react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 interface Props {}
 
@@ -10,7 +10,7 @@ export const NotFoundPage = (props: Props) => {
   const navigate: NavigateFunction = useNavigate();
 
   const goHome = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -32,7 +32,7 @@ export const NotFoundPage = (props: Props) => {
               e intente de nuevo.
             </Typography>
           </span>
-          <Button size={'lg'} onClick={goHome}>
+          <Button size={"lg"} onClick={goHome}>
             <ArrowLeft className="mr-2" /> Volver
           </Button>
         </div>

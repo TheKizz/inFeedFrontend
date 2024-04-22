@@ -83,7 +83,6 @@
   font-weight: 400;
   font-style: normal;
 
-
   &.font-indie-flower-bold {
     font-family: "Indie Flower", cursive;
     font-weight: 600;
@@ -91,4 +90,3 @@
     font-size: x-large;
   }
 }
-
